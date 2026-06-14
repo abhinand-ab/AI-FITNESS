@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL =
-  "http://localhost:5000/api/workouts";
+  "https://ai-fitness-w90y.onrender.com/api/workouts";
 
 const getToken = () => {
   return localStorage.getItem("token");

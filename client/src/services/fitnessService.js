@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL =
-  "http://localhost:5000/api/fitness";
+  "https://ai-fitness-w90y.onrender.com/api/fitness";
 
 export const analyzeFitness =
   async (fitnessData) => {
