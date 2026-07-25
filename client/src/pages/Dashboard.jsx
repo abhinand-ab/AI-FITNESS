@@ -106,7 +106,7 @@ export default function Dashboard() {
           <div className="w-7 h-7 rounded bg-indigo-600 flex items-center justify-center shrink-0">
             <Activity className="w-4 h-4 text-white" />
           </div>
-          <span className="hidden lg:block ml-2 text-sm font-semibold tracking-tight">JEEVA</span>
+          <span className="hidden lg:block ml-2 text-sm font-semibold tracking-tight">AI Fitness Tracker</span>
         </div>
 
         <nav className="flex-1 py-4 flex flex-col gap-1 px-2 lg:px-3">
