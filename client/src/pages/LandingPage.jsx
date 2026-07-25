@@ -1,48 +1,52 @@
 import { Link } from "react-router-dom";
-import { Activity, Dumbbell, TrendingUp, Brain } from "lucide-react";
+import { Dumbbell, TrendingUp, Brain } from "lucide-react";
 import heroImage from "../assets/hero.png";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#09090B] text-white flex flex-col justify-between font-sans overflow-hidden">
-      {/* Navbar */}
-      <nav className="flex items-center justify-between px-6 lg:px-12 py-4 border-b border-white/[0.06]">
-        <Link to="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-indigo-600">
-            <Activity className="w-4.5 h-4.5 text-white" />
+    <div className="min-h-screen bg-black text-zinc-150 flex flex-col justify-between font-sans antialiased selection:bg-zinc-800 selection:text-white">
+      {/* 1. Navbar */}
+      <nav className="sticky top-0 z-50 w-full border-b border-zinc-900 bg-black/70 backdrop-blur-md">
+        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
+          <Link to="/" className="flex items-center gap-2 font-semibold tracking-tight text-white hover:opacity-90">
+            <svg className="h-5 w-5 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13H5.5L12 6.5z" />
+            </svg>
+            <span className="text-sm font-semibold tracking-wider font-mono">JEEVA</span>
+          </Link>
+          <div className="flex items-center gap-4">
+            <Link to="/login" className="text-xs font-medium text-zinc-400 hover:text-white transition-colors">
+              Login
+            </Link>
+            <Link to="/register" className="inline-flex h-8 items-center justify-center rounded-md bg-white px-3 text-xs font-medium text-black hover:bg-zinc-200 transition-colors">
+              Get Started
+            </Link>
           </div>
-          <span className="font-semibold text-lg tracking-tight">JEEVA AI</span>
-        </Link>
-        <div className="flex items-center gap-3">
-          <Link to="/login" className="text-sm font-medium text-zinc-300 hover:text-white px-3 py-2 transition-colors">
-            Sign In
-          </Link>
-          <Link to="/register" className="text-sm font-medium bg-white text-black px-4 py-2 rounded-full hover:bg-zinc-200 transition-colors">
-            Get Started
-          </Link>
         </div>
       </nav>
 
-      {/* Main Content */}
-      <main className="flex-1 flex flex-col justify-center max-w-7xl mx-auto w-full px-6 lg:px-12 py-6 gap-6">
-        {/* Hero Section */}
+      {/* Main Container */}
+      <main className="mx-auto w-full max-w-6xl px-4 sm:px-6 flex-1 flex flex-col justify-center py-8 gap-10">
+
+        {/* 2. Hero Section */}
         <section className="grid lg:grid-cols-12 gap-8 items-center">
           {/* Left Text */}
           <div className="lg:col-span-5 flex flex-col justify-center">
-            <span className="text-xs font-semibold uppercase tracking-widest text-indigo-500 mb-2 block">
-              JEEVA AI
-            </span>
-            <h1 className="text-3xl lg:text-4.5xl font-bold tracking-tight text-white mb-4 leading-tight">
-              Your personal AI fitness coach.
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-0.5 text-[10px] font-mono text-zinc-400 w-fit mb-4">
+              <span>JEEVA AI v1.0</span>
+            </div>
+            <h1 className="text-3xl sm:text-4.5xl font-bold tracking-tight text-white mb-3 leading-tight select-none">
+              Your workouts. <br />
+              Perfected by AI.
             </h1>
-            <p className="text-zinc-400 text-sm lg:text-base mb-6 leading-relaxed">
-              Log workouts, analyze performance, and get intelligent recommendations to help you reach your goals faster.
+            <p className="text-zinc-400 text-sm leading-relaxed mb-6 max-w-sm">
+              Log athletic training, inspect trends, and get personalized calculations for your metrics. A high-performance tracking system for athletes.
             </p>
-            <div className="flex items-center gap-3">
-              <Link to="/register" className="bg-indigo-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-indigo-500 transition-colors">
+            <div className="flex flex-wrap items-center gap-3">
+              <Link to="/register" className="inline-flex h-9 items-center justify-center rounded-md bg-white px-4 text-xs font-semibold text-black hover:bg-zinc-200 transition-colors shadow-sm">
                 Get Started
               </Link>
-              <Link to="/login" className="bg-zinc-900 border border-zinc-800 text-zinc-300 text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-zinc-800 transition-colors">
+              <Link to="/login" className="inline-flex h-9 items-center justify-center rounded-md border border-zinc-800 bg-zinc-950 px-4 text-xs font-semibold text-zinc-200 hover:bg-zinc-900 hover:text-white transition-colors">
                 Login
               </Link>
             </div>
@@ -50,51 +54,65 @@ export default function LandingPage() {
 
           {/* Right Preview */}
           <div className="lg:col-span-7 flex justify-center lg:justify-end">
-            <div className="w-full max-w-xl rounded-xl bg-zinc-900/50 border border-zinc-800/80 p-1.5 overflow-hidden shadow-xl">
+            <div className="w-full max-w-xl rounded-lg border border-zinc-800/80 bg-zinc-950 p-[1px] overflow-hidden shadow-2xl relative">
+              {/* Browser window mockup toolbar */}
+              <div className="flex items-center gap-1.5 px-3 py-1.5 border-b border-zinc-900 bg-zinc-950">
+                <span className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+                <span className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+                <span className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+                <span className="text-[9px] font-mono text-zinc-650 ml-2">jeeva.ai/dashboard</span>
+              </div>
               <img
                 src={heroImage}
-                alt="JEEVA AI Dashboard View"
-                className="w-full h-auto rounded-lg object-cover border border-white/5"
+                alt="Jeeva AI App Dashboard View"
+                className="w-full h-auto object-cover opacity-90"
               />
             </div>
           </div>
         </section>
 
-        {/* Feature Cards */}
-        <section className="grid md:grid-cols-3 gap-4 mt-2">
-          <div className="p-4 rounded-xl bg-zinc-900/40 border border-white/[0.04] flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center shrink-0 mt-0.5">
-              <Dumbbell className="w-4 h-4 text-indigo-400" />
+        {/* 3. Features */}
+        <section className="border-t border-zinc-900 pt-8">
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="p-5 rounded-lg border border-zinc-900 bg-zinc-950/40 relative">
+              <div className="h-8 w-8 mb-3 flex items-center justify-center rounded-md border border-zinc-800 bg-zinc-950 text-zinc-300">
+                <Dumbbell className="h-4 w-4" />
+              </div>
+              <h3 className="text-sm font-semibold text-white mb-1">Workout Tracking</h3>
+              <p className="text-xs text-zinc-400 leading-normal">
+                Log lifts, reps, sets, and compute volumes without friction. A distraction-free, lightning-fast dashboard.
+              </p>
             </div>
-            <div>
-              <h3 className="text-sm font-semibold text-white mb-1">Workout Logging</h3>
-              <p className="text-xs text-zinc-400">Track sets, reps, and volume with a clean, distraction-free interface.</p>
+
+            <div className="p-5 rounded-lg border border-zinc-900 bg-zinc-950/40 relative">
+              <div className="h-8 w-8 mb-3 flex items-center justify-center rounded-md border border-zinc-800 bg-zinc-950 text-zinc-300">
+                <Brain className="h-4 w-4" />
+              </div>
+              <h3 className="text-sm font-semibold text-white mb-1">AI Fitness Analysis</h3>
+              <p className="text-xs text-zinc-400 leading-normal">
+                Generate calories, targets, and body mass index categories using intelligent fitness evaluation modeling.
+              </p>
             </div>
-          </div>
-          <div className="p-4 rounded-xl bg-zinc-900/40 border border-white/[0.04] flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center shrink-0 mt-0.5">
-              <TrendingUp className="w-4 h-4 text-indigo-400" />
-            </div>
-            <div>
+
+            <div className="p-5 rounded-lg border border-zinc-900 bg-zinc-950/40 relative">
+              <div className="h-8 w-8 mb-3 flex items-center justify-center rounded-md border border-zinc-800 bg-zinc-950 text-zinc-300">
+                <TrendingUp className="h-4 w-4" />
+              </div>
               <h3 className="text-sm font-semibold text-white mb-1">Progress Analytics</h3>
-              <p className="text-xs text-zinc-400">Visualize your strength gains over time with beautiful, automated charts.</p>
-            </div>
-          </div>
-          <div className="p-4 rounded-xl bg-zinc-900/40 border border-white/[0.04] flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center shrink-0 mt-0.5">
-              <Brain className="w-4 h-4 text-indigo-400" />
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-white mb-1">AI Assessment</h3>
-              <p className="text-xs text-zinc-400">Get daily caloric recommendations and BMI tracking powered by AI.</p>
+              <p className="text-xs text-zinc-400 leading-normal">
+                Inspect volume stats and weight metrics across time. Interactive charts help you review and plan weights.
+              </p>
             </div>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="py-4 text-center border-t border-white/[0.06] text-[10px] text-zinc-500">
-        <p>© {new Date().getFullYear()} JEEVA AI. Focus on the workout.</p>
+      {/* 4. Footer */}
+      <footer className="w-full border-t border-zinc-900 py-4 text-[10px] text-zinc-500 font-mono">
+        <div className="mx-auto max-w-6xl px-4 flex items-center justify-between sm:px-6">
+          <span>© {new Date().getFullYear()} JEEVA AI.</span>
+          <span className="text-zinc-600">Built for high performance.</span>
+        </div>
       </footer>
     </div>
   );
