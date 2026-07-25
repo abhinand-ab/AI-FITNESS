@@ -1,10 +1,10 @@
 import { useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import StatCard from "../components/StatCard";
-import HeroCard from "../components/HeroCard";
-import WorkoutCard from "../components/WorkoutCard";
-import EmptyState from "../components/EmptyState";
-import ProgressChart from "../components/ProgressChart";
+import StatCard from "../StatCard";
+import HeroCard from "../HeroCard";
+import WorkoutCard from "../WorkoutCard";
+import EmptyState from "../EmptyState";
+import ProgressChart from "../ProgressChart";
 import {
     Dumbbell,
     Activity,
