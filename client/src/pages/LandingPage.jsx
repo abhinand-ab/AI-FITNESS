@@ -33,7 +33,7 @@ export default function LandingPage() {
           {/* Left Text */}
           <div className="lg:col-span-5 flex flex-col justify-center">
             <div className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-0.5 text-[10px] font-mono text-zinc-400 w-fit mb-4">
-              <span>JEEVA AI v1.0</span>
+              <span>AI Fitness Tracker v1.0</span>
             </div>
             <h1 className="text-3xl sm:text-4.5xl font-bold tracking-tight text-white mb-3 leading-tight select-none">
               Your workouts. <br />
@@ -64,7 +64,7 @@ export default function LandingPage() {
               </div>
               <img
                 src={heroImage}
-                alt="Jeeva AI App Dashboard View"
+                alt="AI Fitness Tracker App Dashboard View"
                 className="w-full h-auto object-cover opacity-90"
               />
             </div>
@@ -110,7 +110,7 @@ export default function LandingPage() {
       {/* 4. Footer */}
       <footer className="w-full border-t border-zinc-900 py-4 text-[10px] text-zinc-500 font-mono">
         <div className="mx-auto max-w-6xl px-4 flex items-center justify-between sm:px-6">
-          <span>© {new Date().getFullYear()} JEEVA AI.</span>
+          <span>© {new Date().getFullYear()} AI Fitness Tracker.</span>
           <span className="text-zinc-600">Built for high performance.</span>
         </div>
       </footer>

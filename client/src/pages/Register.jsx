@@ -132,7 +132,7 @@ export default function Register() {
               style={{ background: "linear-gradient(135deg,#4F46E5,#7C3AED)" }}>
               <Activity style={{ width: 16, height: 16, color: "#fff" }} />
             </div>
-            <span className="text-lg font-bold g-text">JEEVA AI</span>
+            <span className="text-lg font-bold g-text">AI Fitness Tracker</span>
           </div>
 
           <h2 className="text-2xl font-black text-white mb-1">Create account</h2>
