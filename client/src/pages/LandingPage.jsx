@@ -12,7 +12,7 @@ export default function LandingPage() {
             <svg className="h-5 w-5 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13H5.5L12 6.5z" />
             </svg>
-            <span className="text-sm font-semibold tracking-wider font-mono">JEEVA</span>
+            <span className="text-sm font-semibold tracking-wider font-mono">AI Fitness Tracker</span>
           </Link>
           <div className="flex items-center gap-4">
             <Link to="/login" className="text-xs font-medium text-zinc-400 hover:text-white transition-colors">
