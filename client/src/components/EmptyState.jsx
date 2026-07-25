@@ -1,42 +1,53 @@
-import { Dumbbell, Plus } from "lucide-react";
 import { motion } from "framer-motion";
+import { Dumbbell, Plus, Zap } from "lucide-react";
 
-function EmptyState({ onAdd }) {
+export default function EmptyState({ onAdd }) {
     return (
         <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col items-center justify-center py-16 px-6"
+            className="flex flex-col items-center justify-center py-16 px-6 text-center"
         >
             {/* Illustration */}
             <div className="relative mb-8">
-                <div className="w-28 h-28 rounded-3xl bg-indigo-500/[0.06] flex items-center justify-center animate-float">
-                    <Dumbbell className="w-14 h-14 text-indigo-500/40" />
+                <div
+                    className="w-28 h-28 rounded-3xl flex items-center justify-center anim-float"
+                    style={{ background: "rgba(99,102,241,.08)", border: "1px solid rgba(99,102,241,.12)" }}
+                >
+                    <Dumbbell style={{ width: 52, height: 52, color: "rgba(99,102,241,.4)" }} />
                 </div>
-                {/* Glowing ring */}
-                <div className="absolute inset-0 w-28 h-28 rounded-3xl border-2 border-dashed border-indigo-500/15 animate-[spin_20s_linear_infinite]" />
+                {/* Orbiting ring */}
+                <div
+                    className="absolute inset-0 w-28 h-28 rounded-3xl"
+                    style={{
+                        border: "2px dashed rgba(99,102,241,.12)",
+                        animation: "spin 20s linear infinite",
+                    }}
+                />
+                {/* Sparkle */}
+                <div
+                    className="absolute -top-2 -right-2 w-7 h-7 rounded-full flex items-center justify-center"
+                    style={{ background: "linear-gradient(135deg,#4F46E5,#7C3AED)" }}
+                >
+                    <Zap style={{ width: 13, height: 13, color: "#fff" }} />
+                </div>
             </div>
 
-            {/* Text */}
-            <h3 className="text-xl font-bold text-white mb-2">
-                Start Your Fitness Journey
-            </h3>
-            <p className="text-gray-400 text-sm text-center max-w-sm mb-8 leading-relaxed">
-                Log your first workout to begin tracking your progress
-                and unlock AI-powered fitness insights.
+            <h3 className="text-xl font-bold text-white mb-2">Start Your Fitness Journey</h3>
+            <p className="text-sm text-[var(--txt-3)] max-w-xs leading-relaxed mb-8">
+                Log your first workout to unlock AI-powered analytics,
+                progress tracking, and personalized fitness insights.
             </p>
 
-            {/* CTA */}
             <button
                 onClick={onAdd}
-                className="btn-primary !py-3.5 !px-8 !rounded-2xl !text-base"
+                className="btn btn-primary"
+                style={{ borderRadius: "var(--radius-lg)", padding: "14px 32px", fontSize: 15 }}
             >
-                <Plus className="w-5 h-5" />
+                <Plus style={{ width: 18, height: 18 }} />
                 <span>Add Your First Workout</span>
             </button>
         </motion.div>
     );
 }
-
-export default EmptyState;

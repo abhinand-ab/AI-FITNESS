@@ -1,85 +1,49 @@
 import { motion } from "framer-motion";
 
-function StatCard({ icon: Icon, label, value, suffix = "", color = "indigo", trend, delay = 0 }) {
-    const colorMap = {
-        indigo: {
-            iconBg: "bg-indigo-500/10",
-            iconColor: "text-indigo-400",
-            glow: "bg-indigo-500",
-            trendColor: "text-indigo-400",
-        },
-        green: {
-            iconBg: "bg-emerald-500/10",
-            iconColor: "text-emerald-400",
-            glow: "bg-emerald-500",
-            trendColor: "text-emerald-400",
-        },
-        orange: {
-            iconBg: "bg-amber-500/10",
-            iconColor: "text-amber-400",
-            glow: "bg-amber-500",
-            trendColor: "text-amber-400",
-        },
-        purple: {
-            iconBg: "bg-purple-500/10",
-            iconColor: "text-purple-400",
-            glow: "bg-purple-500",
-            trendColor: "text-purple-400",
-        },
-        blue: {
-            iconBg: "bg-blue-500/10",
-            iconColor: "text-blue-400",
-            glow: "bg-blue-500",
-            trendColor: "text-blue-400",
-        },
-        red: {
-            iconBg: "bg-red-500/10",
-            iconColor: "text-red-400",
-            glow: "bg-red-500",
-            trendColor: "text-red-400",
-        },
-    };
-
-    const colors = colorMap[color] || colorMap.indigo;
+export default function StatCard({ icon: Icon, label, value, suffix = "", color = "indigo", trend, sub, delay = 0 }) {
+    const C = {
+        indigo: { bg: "rgba(99,102,241,.1)", txt: "#818CF8", cls: "c-indigo" },
+        purple: { bg: "rgba(139,92,246,.1)", txt: "#A78BFA", cls: "c-purple" },
+        amber: { bg: "rgba(245,158,11,.1)", txt: "#FCD34D", cls: "c-amber" },
+        green: { bg: "rgba(34,197,94,.1)", txt: "#4ADE80", cls: "c-green" },
+        blue: { bg: "rgba(59,130,246,.1)", txt: "#60A5FA", cls: "c-blue" },
+        red: { bg: "rgba(239,68,68,.1)", txt: "#F87171", cls: "c-red" },
+    }[color] || { bg: "rgba(99,102,241,.1)", txt: "#818CF8", cls: "c-indigo" };
 
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay }}
-            className="stat-card group"
+            transition={{ duration: 0.45, delay }}
+            className={`stat-c ${C.cls} group`}
         >
-            {/* Background glow */}
-            <div className={`absolute top-0 right-0 w-32 h-32 ${colors.glow} rounded-full opacity-[0.04] blur-3xl group-hover:opacity-[0.08] transition-opacity duration-500`} />
-
-            <div className="relative z-10">
-                {/* Top row: icon + trend */}
-                <div className="flex items-center justify-between mb-4">
-                    <div className={`w-12 h-12 rounded-2xl ${colors.iconBg} flex items-center justify-center`}>
-                        <Icon className={`w-6 h-6 ${colors.iconColor}`} />
-                    </div>
-                    {trend && (
-                        <span className={`text-xs font-medium ${colors.trendColor} bg-white/[0.04] px-2.5 py-1 rounded-full`}>
-                            {trend}
-                        </span>
-                    )}
+            {/* Icon */}
+            <div className="flex items-center justify-between mb-4">
+                <div
+                    className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0"
+                    style={{ background: C.bg }}
+                >
+                    <Icon style={{ width: 20, height: 20, color: C.txt }} />
                 </div>
-
-                {/* Value */}
-                <div className="mb-1">
-                    <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">
-                        {value}
+                {trend && (
+                    <span
+                        className="text-[11px] font-semibold px-2.5 py-1 rounded-full"
+                        style={{ background: C.bg, color: C.txt }}
+                    >
+                        {trend}
                     </span>
-                    {suffix && (
-                        <span className="text-lg text-gray-500 font-medium ml-1">{suffix}</span>
-                    )}
-                </div>
-
-                {/* Label */}
-                <p className="text-sm text-gray-400 font-medium">{label}</p>
+                )}
             </div>
+
+            {/* Value */}
+            <div className="mb-0.5 flex items-end gap-1">
+                <span className="text-3xl font-bold text-white tracking-tight">{value}</span>
+                {suffix && <span className="text-base text-[var(--txt-4)] mb-0.5">{suffix}</span>}
+            </div>
+
+            {/* Label */}
+            <p className="text-sm text-[var(--txt-3)] font-medium">{label}</p>
+            {sub && <p className="text-[11px] text-[var(--txt-4)] mt-0.5">{sub}</p>}
         </motion.div>
     );
 }
-
-export default StatCard;
