@@ -71,7 +71,7 @@ export default function Register() {
             <Activity style={{ width: 20, height: 20, color: "#fff" }} />
           </div>
           <span className="text-xl font-bold text-white">
-            JEEVA <span className="text-white/30 font-light text-sm">AI</span>
+            AI Fitness Tracker<span className="text-white/30 font-light text-sm">AI</span>
           </span>
         </div>
 
