@@ -33,129 +33,108 @@ export default function Login() {
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center p-6 bg-cover bg-center relative"
-      style={{
-        backgroundImage: "url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop')",
-      }}
-    >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/65 backdrop-blur-sm z-0" />
+    <div className="min-h-screen flex items-center justify-center p-5 bg-[#09090B] relative overflow-hidden">
+      {/* Subtle ambient glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full opacity-[0.07] pointer-events-none" style={{ background: "radial-gradient(circle, #4F46E5, transparent 70%)" }} />
 
-      {/* Glassmorphism Card */}
+      {/* Card */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.96, y: 10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="w-full max-w-[420px] relative z-10 p-8 sm:p-10"
-        style={{
-          background: "rgba(24,24,27,0.85)",
-          backdropFilter: "blur(20px)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          borderRadius: "20px",
-          boxShadow: "0 24px 64px rgba(0,0,0,0.6)",
-        }}
+        className="w-full max-w-[400px] relative z-10 bg-[#18181B] border border-[#27272A] rounded-2xl p-8 shadow-xl shadow-black/30"
       >
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="w-12 h-12 mx-auto rounded-xl flex items-center justify-center mb-4"
-            style={{ background: "linear-gradient(135deg,#4F46E5,#7C3AED)" }}>
-            <Activity style={{ width: 24, height: 24, color: "#fff" }} />
+        <div className="text-center mb-7">
+          <div className="w-11 h-11 mx-auto rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br from-[#4F46E5] to-[#6366F1] shadow-md shadow-indigo-500/20">
+            <Activity className="w-5 h-5 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-white mb-2">Welcome Back</h1>
-          <p className="text-sm text-[var(--txt-3)]">Sign in to continue your fitness journey</p>
+          <h1 className="text-xl font-bold text-white mb-1">Welcome back</h1>
+          <p className="text-sm text-zinc-500">Sign in to continue your fitness journey</p>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
 
-          {/* Email Input */}
-          <div className="inp-wrap">
-            <Mail className="inp-icon" style={{ width: 18, height: 18 }} />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email address"
-              value={form.email}
-              onChange={handleChange}
-              className="inp"
-              required
-              style={{ paddingLeft: 46, height: 50, borderRadius: 12 }}
-            />
+          {/* Email */}
+          <div>
+            <label className="block text-xs font-medium text-zinc-400 mb-1.5">Email</label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 pointer-events-none" />
+              <input
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                value={form.email}
+                onChange={handleChange}
+                className="w-full bg-[#09090B] border border-[#27272A] rounded-lg text-sm text-white py-2.5 pl-10 pr-3 focus:border-[#4F46E5] focus:ring-1 focus:ring-[#4F46E5]/30 outline-none transition-all placeholder:text-zinc-600"
+                required
+              />
+            </div>
           </div>
 
-          {/* Password Input */}
+          {/* Password */}
           <div>
-            <div className="inp-wrap">
-              <Lock className="inp-icon" style={{ width: 18, height: 18 }} />
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="block text-xs font-medium text-zinc-400">Password</label>
+              <button type="button" className="text-[11px] text-[#6366F1] hover:text-[#818CF8] font-medium transition-colors">
+                Forgot password?
+              </button>
+            </div>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 pointer-events-none" />
               <input
                 type={showPw ? "text" : "password"}
                 name="password"
-                placeholder="Password"
+                placeholder="Enter password"
                 value={form.password}
                 onChange={handleChange}
-                className="inp"
+                className="w-full bg-[#09090B] border border-[#27272A] rounded-lg text-sm text-white py-2.5 pl-10 pr-10 focus:border-[#4F46E5] focus:ring-1 focus:ring-[#4F46E5]/30 outline-none transition-all placeholder:text-zinc-600"
                 required
-                style={{ paddingLeft: 46, paddingRight: 48, height: 50, borderRadius: 12 }}
               />
               <button
                 type="button"
                 onClick={() => setShowPw(!showPw)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--txt-3)] hover:text-white transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
                 aria-label="Toggle password visibility"
               >
-                {showPw ? <EyeOff style={{ width: 18, height: 18 }} /> : <Eye style={{ width: 18, height: 18 }} />}
-              </button>
-            </div>
-            <div className="flex justify-end mt-2">
-              <button type="button" className="text-xs text-[#6366F1] hover:text-[#7C3AED] transition-colors font-medium">
-                Forgot Password?
+                {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
             </div>
           </div>
 
-          {/* Error Message */}
+          {/* Error */}
           <AnimatePresence>
             {error && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 px-4 py-3 rounded-xl overflow-hidden"
+                className="text-sm text-red-400 bg-red-500/8 border border-red-500/15 px-3.5 py-2.5 rounded-lg overflow-hidden"
               >
                 {error}
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Submit Button */}
+          {/* Submit */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full text-white font-semibold flex items-center justify-center gap-2 mt-4"
-            style={{
-              background: "linear-gradient(135deg, #6366F1, #7C3AED)",
-              height: 50,
-              borderRadius: 12,
-              transition: "transform 0.2s, box-shadow 0.2s",
-              boxShadow: "0 4px 14px rgba(99,102,241,0.3)",
-              opacity: loading ? 0.8 : 1,
-            }}
-            onMouseEnter={(e) => { if (!loading) e.currentTarget.style.transform = "translateY(-1px)" }}
-            onMouseLeave={(e) => { if (!loading) e.currentTarget.style.transform = "translateY(0)" }}
+            className="w-full bg-gradient-to-r from-[#4F46E5] to-[#6366F1] text-white font-semibold text-sm py-2.5 rounded-lg flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all shadow-lg shadow-indigo-500/20 disabled:opacity-70 mt-2"
           >
             {loading ? (
-              <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              <span className="w-4.5 h-4.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             ) : (
               <>
-                Sign In <ArrowRight style={{ width: 18, height: 18 }} />
+                Sign In <ArrowRight className="w-4 h-4" />
               </>
             )}
           </button>
         </form>
 
         {/* Footer */}
-        <p className="text-center text-sm text-[var(--txt-3)] mt-8">
+        <p className="text-center text-sm text-zinc-500 mt-6">
           Don't have an account?{" "}
           <Link to="/register" className="text-white hover:text-[#6366F1] font-semibold transition-colors">
             Create Account

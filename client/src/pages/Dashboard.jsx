@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
-  Activity, BarChart3, Brain, ChevronRight, Dumbbell, Flame,
+  Activity, BarChart3, Brain, Dumbbell, Flame,
   LogOut, Plus, Ruler, Save, Target, TrendingUp, User, Weight, X, Heart, Zap
 } from "lucide-react";
 
@@ -12,22 +11,22 @@ import { analyzeFitness } from "../services/fitnessService";
 import ProgressChart from "../components/ProgressChart";
 import WorkoutCard from "../components/WorkoutCard";
 
-// Helper components
+// Helper — compact form field
 function FLabel({ icon: Icon, name, label, value, onChange, children, type = "text" }) {
   const isSelect = !!children;
   return (
     <div className="flex-1 min-w-[120px]">
-      <label className="block text-[9px] font-bold text-zinc-500 uppercase tracking-wider mb-1 flex items-center gap-1">
-        <Icon className="w-3 h-3 text-indigo-400" /> {label}
+      <label className="block text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-1 flex items-center gap-1">
+        <Icon className="w-3 h-3 text-zinc-500" /> {label}
       </label>
       <div className="relative">
         {isSelect ? (
-          <select name={name} value={value} onChange={onChange} className="w-full bg-zinc-900 border border-zinc-800 rounded-lg text-xs text-zinc-100 py-2 px-3 appearance-none focus:border-indigo-500 outline-none">
+          <select name={name} value={value} onChange={onChange} className="w-full bg-[#09090B] border border-[#27272A] rounded-lg text-xs text-zinc-100 py-2 px-3 appearance-none focus:border-[#4F46E5] outline-none transition-colors">
             {children}
           </select>
         ) : (
           <input type={type} name={name} value={value} onChange={onChange} placeholder={`Enter ${label.toLowerCase()}`}
-            className="w-full bg-zinc-900 border border-zinc-800 rounded-lg text-xs text-zinc-100 py-2 px-3 focus:border-indigo-500 outline-none" />
+            className="w-full bg-[#09090B] border border-[#27272A] rounded-lg text-xs text-zinc-100 py-2 px-3 focus:border-[#4F46E5] outline-none transition-colors placeholder:text-zinc-600" />
         )}
       </div>
     </div>
@@ -101,46 +100,46 @@ export default function Dashboard() {
     <div className="min-h-screen bg-[#09090B] text-zinc-100 flex font-sans">
 
       {/* Sidebar */}
-      <aside className="w-16 lg:w-[170px] fixed inset-y-0 left-0 bg-[#0c0c0e] border-r border-white/[0.04] flex flex-col z-20 transition-all">
-        <div className="h-14 flex items-center justify-center lg:justify-start lg:px-4 border-b border-white/[0.04]">
-          <div className="w-7 h-7 rounded bg-indigo-600 flex items-center justify-center shrink-0">
-            <Activity className="w-4 h-4 text-white" />
+      <aside className="w-16 lg:w-[180px] fixed inset-y-0 left-0 bg-[#0D0D10] border-r border-[#27272A]/50 flex flex-col z-20 transition-all">
+        <div className="h-14 flex items-center justify-center lg:justify-start lg:px-4 border-b border-[#27272A]/50">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#4F46E5] to-[#6366F1] flex items-center justify-center shrink-0 shadow-sm shadow-indigo-500/20">
+            <Activity className="w-3.5 h-3.5 text-white" />
           </div>
-          <span className="hidden lg:block ml-2 text-sm font-semibold tracking-tight">AI Fitness Tracker</span>
+          <span className="hidden lg:block ml-2.5 text-[13px] font-semibold tracking-tight text-white">AI Fitness</span>
         </div>
 
         <nav className="flex-1 py-4 flex flex-col gap-1 px-2 lg:px-3">
-          <button className="flex items-center gap-2 px-3 py-2 bg-indigo-500/10 text-indigo-400 rounded-lg w-full">
-            <Dumbbell className="w-4.5 h-4.5 shrink-0" />
+          <button className="flex items-center gap-2.5 px-3 py-2 bg-[#4F46E5]/10 text-[#818CF8] rounded-lg w-full text-left">
+            <Dumbbell className="w-4 h-4 shrink-0" />
             <span className="hidden lg:block text-xs font-medium">Dashboard</span>
           </button>
         </nav>
 
-        <div className="p-2 lg:p-3 border-t border-white/[0.04]">
-          <button onClick={handleLogout} className="flex items-center gap-2 px-3 py-2 text-zinc-400 hover:text-red-400 rounded-lg w-full transition-colors">
-            <LogOut className="w-4.5 h-4.5 shrink-0" />
+        <div className="p-2 lg:p-3 border-t border-[#27272A]/50">
+          <button onClick={handleLogout} className="flex items-center gap-2.5 px-3 py-2 text-zinc-500 hover:text-red-400 rounded-lg w-full transition-colors text-left">
+            <LogOut className="w-4 h-4 shrink-0" />
             <span className="hidden lg:block text-xs font-medium">Log out</span>
           </button>
         </div>
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 ml-16 lg:ml-[170px] pb-8 transition-all">
+      <main className="flex-1 ml-16 lg:ml-[180px] pb-8 transition-all">
 
         {/* Topbar */}
-        <header className="h-14 px-4 lg:px-6 flex items-center justify-between border-b border-white/[0.02] bg-[#09090B]/80 backdrop-blur z-10 sticky top-0">
+        <header className="h-14 px-4 lg:px-6 flex items-center justify-between border-b border-[#27272A]/30 bg-[#09090B]/90 backdrop-blur-md z-10 sticky top-0">
           <div>
-            <h1 className="text-base font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-indigo-600">
-              Welcome, {user?.name || "Athlete"}
+            <h1 className="text-sm font-semibold text-white">
+              Welcome back, <span className="text-[#818CF8]">{user?.name || "Athlete"}</span>
             </h1>
           </div>
           <div className="flex items-center gap-3">
-            <div className="text-right hidden sm:block">
-              <p className="text-[10px] text-zinc-400 leading-tight">Total Volume</p>
-              <p className="text-xs font-semibold">{totalVolume.toLocaleString()} kg</p>
+            <div className="text-right hidden sm:flex flex-col items-end">
+              <p className="text-[10px] text-zinc-500 leading-tight">Total Volume</p>
+              <p className="text-xs font-semibold text-white">{totalVolume.toLocaleString()} kg</p>
             </div>
-            <div className="w-7 h-7 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center shrink-0">
-              <User className="w-3.5 h-3.5 text-zinc-300" />
+            <div className="w-7 h-7 rounded-full bg-[#18181B] border border-[#27272A] flex items-center justify-center shrink-0">
+              <User className="w-3.5 h-3.5 text-zinc-400" />
             </div>
           </div>
         </header>
@@ -148,14 +147,14 @@ export default function Dashboard() {
         <div className="p-4 lg:p-6 max-w-7xl mx-auto space-y-4">
 
           {/* Workout Form (Top) */}
-          <div className="bg-[#111114] border border-white/[0.04] rounded-xl p-4">
+          <div className="bg-[#18181B] border border-[#27272A] rounded-xl p-4">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-6 h-6 rounded bg-indigo-500/10 flex items-center justify-center">
-                {editingId ? <Save className="w-3.5 h-3.5 text-indigo-400" /> : <Plus className="w-3.5 h-3.5 text-indigo-400" />}
+              <div className="w-6 h-6 rounded-md bg-[#4F46E5]/10 flex items-center justify-center">
+                {editingId ? <Save className="w-3.5 h-3.5 text-[#818CF8]" /> : <Plus className="w-3.5 h-3.5 text-[#818CF8]" />}
               </div>
-              <h2 className="text-sm font-semibold">{editingId ? "Edit Workout" : "Log Activity"}</h2>
+              <h2 className="text-sm font-semibold text-white">{editingId ? "Edit Workout" : "Log Activity"}</h2>
               {editingId && (
-                <button onClick={handleCancelEdit} className="ml-auto flex items-center gap-1 text-[10px] text-zinc-400 hover:text-white bg-white/5 px-2 py-0.5 rounded">
+                <button onClick={handleCancelEdit} className="ml-auto flex items-center gap-1 text-[10px] text-zinc-400 hover:text-white bg-white/5 px-2 py-0.5 rounded transition-colors">
                   <X className="w-2.5 h-2.5" /> Cancel
                 </button>
               )}
@@ -165,7 +164,7 @@ export default function Dashboard() {
               <FLabel icon={Target} name="sets" label="Sets" type="number" value={workoutData.sets} onChange={handleWorkoutChange} />
               <FLabel icon={Activity} name="reps" label="Reps" type="number" value={workoutData.reps} onChange={handleWorkoutChange} />
               <FLabel icon={Weight} name="weight" label="Weight (kg)" type="number" value={workoutData.weight} onChange={handleWorkoutChange} />
-              <button type="submit" className="h-[34px] px-5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg transition-colors w-full sm:w-auto shrink-0 flex items-center justify-center gap-1.5">
+              <button type="submit" className="h-[34px] px-5 bg-gradient-to-r from-[#4F46E5] to-[#6366F1] hover:opacity-90 text-white text-xs font-semibold rounded-lg transition-all w-full sm:w-auto shrink-0 flex items-center justify-center gap-1.5 shadow-sm shadow-indigo-500/20 active:scale-[0.97]">
                 {editingId ? "Update" : "Save"}
               </button>
             </form>
@@ -175,42 +174,42 @@ export default function Dashboard() {
           <div className="grid lg:grid-cols-2 gap-4 items-start">
 
             {/* History Column */}
-            <div className="bg-[#111114] border border-white/[0.04] rounded-xl p-4 flex flex-col">
+            <div className="bg-[#18181B] border border-[#27272A] rounded-xl p-4 flex flex-col">
               <div className="flex items-center gap-2 mb-3">
-                <div className="w-6 h-6 rounded bg-zinc-800 flex items-center justify-center">
-                  <TrendingUp className="w-3.5 h-3.5 text-zinc-300" />
+                <div className="w-6 h-6 rounded-md bg-[#22C55E]/10 flex items-center justify-center">
+                  <TrendingUp className="w-3.5 h-3.5 text-[#22C55E]" />
                 </div>
-                <h2 className="text-sm font-semibold">History</h2>
-                <span className="ml-auto text-[10px] text-zinc-400 bg-zinc-900 px-2 py-0.5 rounded-full border border-zinc-800">{workouts.length} total</span>
+                <h2 className="text-sm font-semibold text-white">History</h2>
+                <span className="ml-auto text-[10px] text-zinc-400 bg-[#09090B] px-2 py-0.5 rounded-full border border-[#27272A]">{workouts.length} total</span>
               </div>
 
               <div className="space-y-2 pr-1 custom-scrollbar">
                 {workouts.length > 0 ? workouts.map((w) => (
                   <WorkoutCard key={w._id} workout={w} onEdit={handleEdit} onDelete={handleDelete} />
                 )) : (
-                  <div className="text-center py-8 bg-zinc-900/30 rounded-lg border border-dashed border-zinc-800">
+                  <div className="text-center py-8 bg-[#09090B]/50 rounded-lg border border-dashed border-[#27272A]">
                     <Dumbbell className="w-6 h-6 text-zinc-600 mx-auto mb-1.5" />
-                    <p className="text-xs text-zinc-400">No workouts recorded.</p>
+                    <p className="text-xs text-zinc-500">No workouts recorded yet.</p>
                   </div>
                 )}
               </div>
             </div>
 
             {/* Analytics Column */}
-            <div className="bg-[#111114] border border-white/[0.04] rounded-xl p-4">
+            <div className="bg-[#18181B] border border-[#27272A] rounded-xl p-4">
               <div className="flex items-center gap-2 mb-3">
-                <div className="w-6 h-6 rounded bg-zinc-800 flex items-center justify-center">
-                  <BarChart3 className="w-3.5 h-3.5 text-zinc-300" />
+                <div className="w-6 h-6 rounded-md bg-[#8B5CF6]/10 flex items-center justify-center">
+                  <BarChart3 className="w-3.5 h-3.5 text-[#8B5CF6]" />
                 </div>
-                <h2 className="text-sm font-semibold">Analytics</h2>
+                <h2 className="text-sm font-semibold text-white">Analytics</h2>
               </div>
 
               {workouts.length > 1 ? (
                 <ProgressChart workouts={workouts} />
               ) : (
-                <div className="py-12 flex flex-col items-center justify-center text-center bg-zinc-900/30 rounded-lg border border-dashed border-zinc-800">
+                <div className="py-12 flex flex-col items-center justify-center text-center bg-[#09090B]/50 rounded-lg border border-dashed border-[#27272A]">
                   <BarChart3 className="w-6 h-6 text-zinc-600 mb-1.5" />
-                  <p className="text-xs text-zinc-400">Log at least 2 workouts to view trends.</p>
+                  <p className="text-xs text-zinc-500">Log at least 2 workouts to view trends.</p>
                 </div>
               )}
             </div>
@@ -218,12 +217,12 @@ export default function Dashboard() {
           </div>
 
           {/* Bottom: Fitness Analysis */}
-          <div className="bg-[#111114] border border-white/[0.04] rounded-xl p-4">
+          <div className="bg-[#18181B] border border-[#27272A] rounded-xl p-4">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-6 h-6 rounded bg-indigo-500/10 flex items-center justify-center">
-                <Brain className="w-3.5 h-3.5 text-indigo-400" />
+              <div className="w-6 h-6 rounded-md bg-[#4F46E5]/10 flex items-center justify-center">
+                <Brain className="w-3.5 h-3.5 text-[#818CF8]" />
               </div>
-              <h2 className="text-sm font-semibold">AI Assessment</h2>
+              <h2 className="text-sm font-semibold text-white">AI Assessment</h2>
             </div>
 
             <div className="grid lg:grid-cols-5 gap-4 items-start">
@@ -245,7 +244,7 @@ export default function Dashboard() {
                     <option>Low</option><option>Moderate</option><option>High</option>
                   </FLabel>
                 </div>
-                <button type="submit" className="w-full bg-zinc-100 hover:bg-white text-black text-xs font-semibold py-2 rounded-lg transition-colors flex justify-center items-center gap-1.5">
+                <button type="submit" className="w-full bg-white hover:bg-zinc-100 text-[#09090B] text-xs font-semibold py-2 rounded-lg transition-colors flex justify-center items-center gap-1.5 active:scale-[0.98]">
                   <Brain className="w-3.5 h-3.5" /> Generate Analysis
                 </button>
               </form>
@@ -253,29 +252,29 @@ export default function Dashboard() {
               {/* Results */}
               <div className="lg:col-span-3 h-full">
                 {fitnessResult ? (
-                  <div className="h-full bg-indigo-500/5 border border-indigo-500/10 rounded-xl p-4 flex flex-col justify-center">
-                    <div className="flex items-center gap-4 mb-3">
+                  <div className="h-full bg-[#4F46E5]/5 border border-[#4F46E5]/15 rounded-xl p-4 flex flex-col justify-center">
+                    <div className="flex items-center gap-5 mb-3">
                       <div>
-                        <p className="text-[10px] text-zinc-400 uppercase tracking-wider mb-0.5">BMI Score</p>
+                        <p className="text-[10px] text-zinc-500 uppercase tracking-wider mb-0.5 font-medium">BMI Score</p>
                         <p className="text-2xl font-bold text-white leading-tight">{fitnessResult.bmi}</p>
-                        <p className="text-xs font-medium text-indigo-400">{fitnessResult.category}</p>
+                        <p className="text-xs font-medium text-[#818CF8]">{fitnessResult.category}</p>
                       </div>
-                      <div className="w-px h-10 bg-white/10" />
+                      <div className="w-px h-12 bg-[#27272A]" />
                       <div>
-                        <p className="text-[10px] text-zinc-400 uppercase tracking-wider mb-0.5">Daily Targets</p>
+                        <p className="text-[10px] text-zinc-500 uppercase tracking-wider mb-0.5 font-medium">Daily Targets</p>
                         <p className="text-2xl font-bold text-white flex items-end gap-1 leading-tight">
                           {fitnessResult.calories} <span className="text-sm font-normal text-zinc-400">kcal</span>
                         </p>
                       </div>
                     </div>
-                    <div className="pt-2 border-t border-white/5">
-                      <p className="text-[10px] font-semibold text-indigo-400 uppercase tracking-wider mb-0.5">Recommendation</p>
-                      <p className="text-xs text-zinc-300 leading-normal">{fitnessResult.recommendation}</p>
+                    <div className="pt-3 border-t border-[#27272A]/60">
+                      <p className="text-[10px] font-semibold text-[#818CF8] uppercase tracking-wider mb-0.5">Recommendation</p>
+                      <p className="text-xs text-zinc-300 leading-relaxed">{fitnessResult.recommendation}</p>
                     </div>
                   </div>
                 ) : (
-                  <div className="h-full py-8 bg-zinc-900/30 rounded-lg border border-dashed border-zinc-800 flex flex-col items-center justify-center p-4 text-center text-zinc-400 text-xs">
-                    <Brain className="w-6 h-6 mb-1.5 opacity-55" />
+                  <div className="h-full py-8 bg-[#09090B]/50 rounded-lg border border-dashed border-[#27272A] flex flex-col items-center justify-center p-4 text-center text-zinc-500 text-xs">
+                    <Brain className="w-6 h-6 mb-1.5 opacity-40" />
                     Enter your body stats and goals<br />to receive AI insights.
                   </div>
                 )}

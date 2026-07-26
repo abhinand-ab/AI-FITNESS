@@ -2,17 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { registerUser } from "../services/authService";
-import {
-  Activity, Mail, Lock, Eye, EyeOff, User, ArrowRight,
-  Sparkles, Check, TrendingUp, Brain, Dumbbell,
-} from "lucide-react";
-
-const perks = [
-  { icon: Sparkles, text: "AI-powered fitness assessment" },
-  { icon: TrendingUp, text: "Real-time progress analytics" },
-  { icon: Dumbbell, text: "Unlimited workout logging" },
-  { icon: Brain, text: "Personalized recommendations" },
-];
+import { Activity, Mail, Lock, Eye, EyeOff, User, ArrowRight } from "lucide-react";
 
 export default function Register() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -50,210 +40,144 @@ export default function Register() {
   })();
 
   return (
-    <div className="min-h-screen flex" style={{ background: "var(--bg)" }}>
+    <div className="min-h-screen flex items-center justify-center p-5 bg-[#09090B] relative overflow-hidden">
+      {/* Subtle ambient glow */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full opacity-[0.06] pointer-events-none" style={{ background: "radial-gradient(circle, #8B5CF6, transparent 70%)" }} />
 
-      {/* ── LEFT PANEL ── */}
-      <div className="hidden lg:flex lg:w-[55%] auth-left flex-col justify-between p-14 relative">
-        {[...Array(6)].map((_, i) => (
-          <div key={i} className="glow-orb"
-            style={{
-              width: `${90 + i * 45}px`, height: `${90 + i * 45}px`,
-              top: `${[5, 20, 50, 65, 80, 40][i]}%`,
-              left: `${[70, 20, 55, 15, 70, 85][i]}%`,
-              background: `radial-gradient(circle,rgba(${i % 2 === 0 ? '139,92,246' : '99,102,241'},.14) 0%,transparent 70%)`,
-            }}
-          />
-        ))}
-
-        <div className="flex items-center gap-3 relative z-10">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{ background: "rgba(255,255,255,.1)", backdropFilter: "blur(10px)" }}>
-            <Activity style={{ width: 20, height: 20, color: "#fff" }} />
+      {/* Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="w-full max-w-[400px] relative z-10 bg-[#18181B] border border-[#27272A] rounded-2xl p-8 shadow-xl shadow-black/30"
+      >
+        {/* Header */}
+        <div className="text-center mb-7">
+          <div className="w-11 h-11 mx-auto rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br from-[#4F46E5] to-[#6366F1] shadow-md shadow-indigo-500/20">
+            <Activity className="w-5 h-5 text-white" />
           </div>
-          <span className="text-xl font-bold text-white">
-            AI Fitness Tracker<span className="text-white/30 font-light text-sm">AI</span>
-          </span>
-        </div>
-
-        <div className="relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <p className="text-purple-300 text-sm font-semibold mb-4 uppercase tracking-wide">Join the movement</p>
-            <h1 className="text-4xl lg:text-5xl font-black text-white leading-tight mb-6">
-              Start training<br />
-              <span className="text-transparent" style={{
-                backgroundImage: "linear-gradient(135deg,#C084FC,#818CF8)",
-                WebkitBackgroundClip: "text", backgroundClip: "text"
-              }}>like a champion.</span>
-            </h1>
-            <p className="text-white/50 text-lg mb-10 max-w-sm leading-relaxed">
-              Free forever. No credit card. Set up your profile in under 60 seconds.
-            </p>
-
-            <div className="space-y-3">
-              {perks.map((p, i) => (
-                <motion.div
-                  key={p.text}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 + i * 0.1 }}
-                  className="flex items-center gap-3"
-                >
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-                    style={{ background: "rgba(255,255,255,.08)" }}>
-                    <Check style={{ width: 14, height: 14, color: "#4ADE80" }} />
-                  </div>
-                  <span className="text-white/70 text-sm">{p.text}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-
-        <p className="text-white/20 text-xs relative z-10">
-          "Don't wish for it. Work for it."
-        </p>
-      </div>
-
-      {/* ── RIGHT PANEL ── */}
-      <div className="flex-1 flex items-center justify-center p-6 sm:p-10">
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
-          className="w-full max-w-[420px]"
-        >
-          {/* Mobile logo */}
-          <div className="lg:hidden flex items-center gap-2 mb-8">
-            <div className="w-8 h-8 rounded-xl flex items-center justify-center"
-              style={{ background: "linear-gradient(135deg,#4F46E5,#7C3AED)" }}>
-              <Activity style={{ width: 16, height: 16, color: "#fff" }} />
-            </div>
-            <span className="text-lg font-bold g-text">AI Fitness Tracker</span>
-          </div>
-
-          <h2 className="text-2xl font-black text-white mb-1">Create account</h2>
-          <p className="text-sm text-[var(--txt-3)] mb-8">
+          <h1 className="text-xl font-bold text-white mb-1">Create your account</h1>
+          <p className="text-sm text-zinc-500">
             Already have an account?{" "}
-            <Link to="/login" className="text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
-              Sign in
-            </Link>
+            <Link to="/login" className="text-[#6366F1] hover:text-[#818CF8] font-semibold transition-colors">Sign in</Link>
+          </p>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+
+          {/* Name */}
+          <div>
+            <label className="block text-xs font-medium text-zinc-400 mb-1.5">Full Name</label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 pointer-events-none" />
+              <input
+                type="text"
+                name="name"
+                placeholder="Jane Doe"
+                value={form.name}
+                onChange={handleChange}
+                className="w-full bg-[#09090B] border border-[#27272A] rounded-lg text-sm text-white py-2.5 pl-10 pr-3 focus:border-[#4F46E5] focus:ring-1 focus:ring-[#4F46E5]/30 outline-none transition-all placeholder:text-zinc-600"
+                required
+              />
+            </div>
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="block text-xs font-medium text-zinc-400 mb-1.5">Email</label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 pointer-events-none" />
+              <input
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                value={form.email}
+                onChange={handleChange}
+                className="w-full bg-[#09090B] border border-[#27272A] rounded-lg text-sm text-white py-2.5 pl-10 pr-3 focus:border-[#4F46E5] focus:ring-1 focus:ring-[#4F46E5]/30 outline-none transition-all placeholder:text-zinc-600"
+                required
+              />
+            </div>
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="block text-xs font-medium text-zinc-400 mb-1.5">Password</label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 pointer-events-none" />
+              <input
+                type={showPw ? "text" : "password"}
+                name="password"
+                placeholder="Min. 8 characters"
+                value={form.password}
+                onChange={handleChange}
+                className="w-full bg-[#09090B] border border-[#27272A] rounded-lg text-sm text-white py-2.5 pl-10 pr-10 focus:border-[#4F46E5] focus:ring-1 focus:ring-[#4F46E5]/30 outline-none transition-all placeholder:text-zinc-600"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPw(!showPw)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
+                aria-label="Toggle password"
+              >
+                {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
+            </div>
+
+            {/* Strength bar */}
+            {pwStrength && (
+              <div className="mt-2">
+                <div className="h-1 rounded-full overflow-hidden bg-white/[0.04]">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${pwStrength.w}%` }}
+                    transition={{ duration: 0.4 }}
+                    className="h-full rounded-full"
+                    style={{ background: pwStrength.color }}
+                  />
+                </div>
+                <p className="text-[11px] mt-1 font-medium" style={{ color: pwStrength.color }}>{pwStrength.label}</p>
+              </div>
+            )}
+          </div>
+
+          {/* Error */}
+          <AnimatePresence>
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="text-sm text-red-400 bg-red-500/8 border border-red-500/15 px-3.5 py-2.5 rounded-lg"
+              >
+                {error}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Terms */}
+          <p className="text-[11px] text-zinc-500 leading-relaxed">
+            By creating an account you agree to our{" "}
+            <span className="text-zinc-400 cursor-pointer hover:text-white transition-colors">Terms of Service</span> and{" "}
+            <span className="text-zinc-400 cursor-pointer hover:text-white transition-colors">Privacy Policy</span>.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-
-            {/* Name */}
-            <div>
-              <label className="text-xs font-semibold text-[var(--txt-3)] uppercase tracking-wider mb-2 block">Full Name</label>
-              <div className="inp-wrap">
-                <User className="inp-icon" style={{ width: 17, height: 17 }} />
-                <input
-                  type="text" name="name" placeholder="Jane Doe"
-                  value={form.name} onChange={handleChange}
-                  className="inp" required
-                />
-              </div>
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="text-xs font-semibold text-[var(--txt-3)] uppercase tracking-wider mb-2 block">Email</label>
-              <div className="inp-wrap">
-                <Mail className="inp-icon" style={{ width: 17, height: 17 }} />
-                <input
-                  type="email" name="email" placeholder="you@example.com"
-                  value={form.email} onChange={handleChange}
-                  className="inp" required
-                />
-              </div>
-            </div>
-
-            {/* Password */}
-            <div>
-              <label className="text-xs font-semibold text-[var(--txt-3)] uppercase tracking-wider mb-2 block">Password</label>
-              <div className="inp-wrap">
-                <Lock className="inp-icon" style={{ width: 17, height: 17 }} />
-                <input
-                  type={showPw ? "text" : "password"}
-                  name="password" placeholder="Min. 8 characters"
-                  value={form.password} onChange={handleChange}
-                  className="inp" required
-                  style={{ paddingRight: 44 }}
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPw(!showPw)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--txt-3)] hover:text-[var(--txt)] transition-colors"
-                  aria-label="Toggle password"
-                >
-                  {showPw ? <EyeOff style={{ width: 17, height: 17 }} /> : <Eye style={{ width: 17, height: 17 }} />}
-                </button>
-              </div>
-
-              {/* Strength bar */}
-              {pwStrength && (
-                <div className="mt-2">
-                  <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,.06)" }}>
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${pwStrength.w}%` }}
-                      transition={{ duration: 0.4 }}
-                      style={{ height: "100%", background: pwStrength.color, borderRadius: 4, transition: "background .3s" }}
-                    />
-                  </div>
-                  <p className="text-[11px] mt-1" style={{ color: pwStrength.color }}>{pwStrength.label}</p>
-                </div>
-              )}
-            </div>
-
-            {/* Error */}
-            <AnimatePresence>
-              {error && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className="text-sm text-red-400 px-4 py-3 rounded-xl"
-                  style={{ background: "rgba(239,68,68,.08)", border: "1px solid rgba(239,68,68,.18)" }}
-                >
-                  {error}
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Terms */}
-            <p className="text-xs text-[var(--txt-4)] leading-relaxed">
-              By creating an account you agree to our{" "}
-              <span className="text-indigo-400 cursor-pointer">Terms of Service</span> and{" "}
-              <span className="text-indigo-400 cursor-pointer">Privacy Policy</span>.
-            </p>
-
-            {/* Submit */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="btn btn-primary btn-full"
-              style={{ padding: "14px 24px", fontSize: 15, borderRadius: "var(--radius-sm)" }}
-            >
-              {loading ? (
-                <span className="flex items-center gap-2">
-                  <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full"
-                    style={{ animation: "spin .7s linear infinite" }} />
-                  Creating account…
-                </span>
-              ) : (
-                <>
-                  <span>Create Free Account</span>
-                  <ArrowRight style={{ width: 17, height: 17 }} />
-                </>
-              )}
-            </button>
-          </form>
-        </motion.div>
-      </div>
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-[#4F46E5] to-[#6366F1] text-white font-semibold text-sm py-2.5 rounded-lg flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all shadow-lg shadow-indigo-500/20 disabled:opacity-70"
+          >
+            {loading ? (
+              <span className="w-4.5 h-4.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            ) : (
+              <>
+                Create Free Account <ArrowRight className="w-4 h-4" />
+              </>
+            )}
+          </button>
+        </form>
+      </motion.div>
     </div>
   );
 }
